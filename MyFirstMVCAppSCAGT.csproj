@@ -45,10 +45,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -120,14 +128,98 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AuditLog.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AUDITTABLE.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Course.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentID.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpJimmy.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmpJinalTable.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Employee.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GetMultipleData_Result.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GETTABLES_Multi_Result.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="GETTABLES_Result.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Menu.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\User.cs" />
+    <Compile Include="MyDBConnection.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyDBConnection.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyDBConnection.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyDBConnection.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MyDBConnection.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MyFirstSP_Result.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyFirstView.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyTableValuedFunction1_Result.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="MyTableValuedFunction_Result.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SP_SaveEmployee_Result.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Student.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Student_New.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserCopy.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserJMMY.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User_Address.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View_20230603.cs">
+      <DependentUpon>MyDBConnection.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -138,8 +230,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="MyDBConnection.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>MyDBConnection.Context.cs</LastGenOutput>
+      <DependentUpon>MyDBConnection.edmx</DependentUpon>
+    </Content>
+    <Content Include="MyDBConnection.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MyDBConnection.edmx</DependentUpon>
+      <LastGenOutput>MyDBConnection.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="MyDBConnection.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MyDBConnection.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="MyDBConnection.edmx.diagram">
+      <DependentUpon>MyDBConnection.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -184,6 +293,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

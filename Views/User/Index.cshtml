@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MyFirstMVCAppSCAGT.Models.User>
+﻿@model IEnumerable<MyFirstMVCAppSCAGT.Student>
 
 @{
     ViewBag.Title = "Index";
@@ -11,15 +11,17 @@
 @*@Html.TextBoxFor(Model)*@
 
 
+
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>User Id</th>
+        <th>Student Id</th>
         <th>
-            @Html.DisplayNameFor(model => model.UserName)
+            Student Name
         </th>
+        <th>Address</th>
         <th></th>
     </tr>
 
@@ -31,33 +33,19 @@
 
             <td>
 
-                @if (true)
-                {
+                @item.StudentId
 
-                }
-
-
-                @{
-                    var a = item.UserId + 2;
-                    if (true)
-                    {
-
-                    }
-                }
-
-                @item.UserName
-
-                @a
-
-                @*@Html.DisplayFor(modelItem => item.UserId)*@
             </td>
             <td>
-                @item.UserName
+                @item.StudentName
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.UserId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.UserId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.UserId })
+                @item.Address
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.StudentId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.StudentId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.StudentId })
             </td>
         </tr>
     }
