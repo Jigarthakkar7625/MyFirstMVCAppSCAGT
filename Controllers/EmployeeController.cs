@@ -18,6 +18,7 @@ namespace MyFirstMVCAppSCAGT.Controllers
         [HttpGet]
         public ActionResult CreateNew1(int UserId)
         {
+
             try
             {
 
