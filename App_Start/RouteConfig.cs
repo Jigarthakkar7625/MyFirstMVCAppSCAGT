@@ -13,6 +13,16 @@ namespace MyFirstMVCAppSCAGT
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.MapMvcAttributeRoutes();
+
+            ////Custom
+            //routes.MapRoute(
+            //    name: "User",
+            //    url: "User/{controller}/{action}/{id}",
+            //    defaults: new { controller = "UserNew", action = "Index", id = UrlParameter.Optional }
+            //);
+
+            /// Default
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

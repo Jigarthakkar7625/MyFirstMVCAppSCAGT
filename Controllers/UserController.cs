@@ -17,6 +17,11 @@ namespace MyFirstMVCAppSCAGT.Controllers
 
         public ActionResult Index()
         {
+
+            UserDemo userDemo = new UserDemo();
+
+            ViewData["UserId"] = 2;
+
             var a = TempData["EmailId"];
 
             TempData.Keep("EmailId");

@@ -30,7 +30,7 @@
 
 {
 
-    @ViewBag.UserName
+    @*@ViewBag.UserName
 
     <br />
 
@@ -38,7 +38,7 @@
 
 <br />
 
-    @ViewBag.Employee
+    @ViewBag.Employee*@
 
 
     <h2>Create</h2>
@@ -48,6 +48,8 @@
             @Html.LabelFor(m => m.UserName, new { @class = "control-label col-md-2" })
 
             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(m => m.UserName)
         </div>
 
 
@@ -55,7 +57,39 @@
             @Html.LabelFor(m => m.EmailId, new { @class = "control-label col-md-2" })
 
             @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(m => m.EmailId)
         </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Age, new { @class = "control-label col-md-2" })
+
+            @Html.TextBoxFor(m => m.Age, new { @class = "form-control", @type = "number" })
+
+            @Html.ValidationMessageFor(m => m.Age)
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "control-label col-md-2" })
+
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control"})
+
+            @Html.ValidationMessageFor(m => m.Password)
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label col-md-2" })
+
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control"})
+
+            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+        </div>
+
+        <input type="file" />
+
 
         <div class="form-group">
             @Html.LabelFor(m => m.CountryID, new { @class = "control-label col-md-2" })
@@ -63,7 +97,7 @@
             @*@Html.DropDownListFor(m => m.CountryID, new SelectList(Enum.GetValues(typeof(Country)), "Please Select Country "))*@
 
 
-            @Html.DropDownListFor(m => m.CountryID, new SelectList(ViewBag.UserList,"StudentId","StudentName"), "Please Select Country ", new { @class = "form-control" })
+            @Html.DropDownListFor(m => m.CountryID, new SelectList(ViewBag.UserList, "StudentId", "StudentName"), "Please Select Country ", new { @class = "form-control" })
         </div>
 
 
