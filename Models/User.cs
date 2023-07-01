@@ -25,7 +25,7 @@ namespace MyFirstMVCAppSCAGT.Models
         [Required(ErrorMessage = "UserName is required!!! ")]
         [StringLength(10, MinimumLength = 4, ErrorMessage = "Maximun character is 10")]
         public string UserName { get; set; }
-
+            
         [DisplayName("Password")]
         [Required(ErrorMessage = "Password is required!!! ")]
         public string Password { get; set; }
