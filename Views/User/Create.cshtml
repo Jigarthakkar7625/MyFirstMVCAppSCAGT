@@ -9,9 +9,42 @@
 }
 
 
+@Scripts.Render("~/bundles/jquery");
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryval");
+}
 
 
-@foreach (var item in (IEnumerable<MyFirstMVCAppSCAGT.Student>)ViewData["UserList"]){
+@if (Session["USerId"] != null)
+{
+
+    @Session["USerId"].ToString()
+
+}
+
+
+@*@Html.Partial("_PartialVIew", new Student())*@
+
+
+@{
+    Html.RenderPartial("_PartialVIew", new Student());
+}
+
+@*@Html.Partial("_PartialVIew")
+    @Html.Partial("_PartialVIew")
+    @Html.Partial("_PartialVIew")
+    @Html.Partial("_PartialVIew")
+
+    @Html.Partial("_PartialVIew")
+    @Html.Partial("_PartialVIew")*@
+
+<br />
+
+
+@foreach (var item in (IEnumerable<MyFirstMVCAppSCAGT.Student>)ViewData["UserList"])
+{
 
     <tr>
         <td>
@@ -26,19 +59,19 @@
 
 
 
-@using (Html.BeginForm("Create", "User", new { UserId = 12, CompanyId = 10 }, FormMethod.Post, new { @class = "Customclass" }))
+@using (Html.BeginForm("Create", "User", new { UserId = 12, CompanyId = 10 }, FormMethod.Post, new { enctype = "multipart/form-data", @class = "Customclass", @id = "frmId" }))
 
 {
 
     @*@ViewBag.UserName
 
-    <br />
+            <br />
 
-    @ViewBag.UserId
+            @ViewBag.UserId
 
-<br />
+        <br />
 
-    @ViewBag.Employee*@
+            @ViewBag.Employee*@
 
 
     <h2>Create</h2>
@@ -75,7 +108,7 @@
         <div class="form-group">
             @Html.LabelFor(m => m.Password, new { @class = "control-label col-md-2" })
 
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control"})
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
 
             @Html.ValidationMessageFor(m => m.Password)
         </div>
@@ -83,12 +116,12 @@
         <div class="form-group">
             @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label col-md-2" })
 
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control"})
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
 
             @Html.ValidationMessageFor(m => m.ConfirmPassword)
         </div>
 
-        <input type="file" />
+
 
 
         <div class="form-group">
@@ -99,8 +132,8 @@
 
             @Html.DropDownListFor(m => m.CountryID, new SelectList(ViewBag.UserList, "StudentId", "StudentName"), "Please Select Country ", new { @class = "form-control" })
         </div>
-        
-        
+
+
 
         <div class="form-group">
             @Html.LabelFor(m => m.IsActive, new { @class = "control-label col-md-2" })
@@ -117,11 +150,45 @@
             <br />
             @Html.RadioButtonFor(m => m.Gender, "Female") FEMALE
         </div>
+
+        <div class="form-group">
+
+
+
+            @Html.TextBoxFor(m => m.PostedFile, new { type = "file" })
+            <br />
+            @Html.ValidationMessageFor(m => m.PostedFile, "", new { @class = "error" })
+
+        </div>
+
+        <div class="form-group">
+
+            <select id="EmailId123" name="EmailId123">
+                @*<option value="">--Select Parent--</option>*@
+            </select>
+
+            @*@Html.DropDownList("EmailId", Enumerable.Empty<SelectListItem>(), "--Select Parent--")*@
+
+
+            @*@Html.DropDownList("EmailId", new IEnumerable<SelectListItem>());*@
+
+        </div>
+
+
+
+        <a onclick="GetClientReport()"> DOWNLOAD</a>
+
+        <a id="myButton"> Fire Controller script</a>
     </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />
+            <br />
+            <br />
+            <input type="button" id="btnButton1" value="Button1" class="btn btn-default clsClass" />
+            <br />
+            <input type="button" id="btnButton2" value="Button2" class="btn btn-default clsClass" />
         </div>
     </div>
     <br />
@@ -160,6 +227,177 @@
         @Html.ActionLink("Back to List", "Index")
     </div>*@
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+
+
+
+<script type="text/javascript">
+
+    //
+    $(document).ready(function () {
+
+        // Object {}
+        var obj = {
+            "FirstName": "JIgar",
+            "LastName": "Thakkar",
+            "Gender": "M",
+        }
+
+        var array = [
+            {
+                "FirstName": "JIgar",
+                "LastName": "Thakkar",
+                "Gender": "M",
+            },
+            {
+                "FirstName": "Gagan",
+                "LastName": "Thakkar",
+                "Gender": "M",
+            },
+            {
+                "FirstName": "Sandip",
+                "LastName": "Patel",
+                "Gender": "M",
+            },
+            {
+                "FirstName": "Twinkal",
+                "LastName": "Patel",
+                "Gender": "G",
+            }
+        ];
+
+        debugger
+
+        // Convert JSON to String
+        var stringJSON = JSON.stringify(array);
+
+        //Convert String to JSON if Valid
+        var jsonParse = JSON.parse(stringJSON);
+
+
+        // Object
+        var obj = {
+            FirstName: "JIgar",
+            LastName: "Thakkar",
+            Gender: "M",
+        }
+
+
+
+        // # >> ID
+        debugger
+        $("#UserName").val("JIgar Thakkar") // Set
+
+        //J : $("#UserName")
+        // Javascript :
+        document.getElementById("UserName");
+
+
+        // . >> Dot
+        //$(".form-control").css("background-color", "red")
+
+        //$("#UserName, #CountryID").css("background-color", "red") // Set
+
+        //$("label,input").css("background-color", "red");
+
+        //$("#btnButton").mouseenter(function () {
+        //    alert($("#btnButton").hasClass("clsClass dsfsdff dff"));
+        //})
+
+        //$("#btnButton2").bind("click", function () {
+        //    alert("btnButton2 First fired");
+        //});
+
+        $("#btnButton1").click(function () {
+            debugger
+
+            var obj = $("#frmId").serialize();
+
+            $.getJSON('URL', { name: 'jigar' }, function (data, textStatus, jqXHR) {
+                $('p').append(data.firstName);
+            });
+
+
+            $.ajax({
+                // /UserNew/JSONMethodCalled
+                url: "@Url.Action("JsonResultMethod", "UserNew")",//*
+                type: "POST",      // The HTTP method to use for the request//*
+                //contentType: "application/json; charset=utf-8", // Need to pass data from AJAX to Method
+                dataType: "json",   // The type of data that you're exerciseecting back //*
+                data: obj,
+
+                error: function (e) {
+                    debugger
+                    // A function to be called if the request fails.
+                },
+                beforeSend: function (e) {
+                    debugger
+                    // A function to be called if before the request is made.
+                },
+                success: function (response) {
+                    debugger
+                    $.each(response, function (data, value) {
+                        debugger
+                        $("#EmailId123").append($("<option></option>").val(value.UserId).html(value.UserName));
+                    })
+                    // A function to be called if the request succeeds.
+                },
+                complete: function (response) {
+                    debugger
+                    // A function to be called when the request finishes
+                }
+            });
+
+
+            //var a = $("input").length;
+
+            //$(this).attr("data-value", "Jigar Thakkar");
+
+            //$("#btnButton2").bind("click", function () {
+            //    alert("btnButton2 First fired");
+            //});
+
+            //alert("btnButton1 fired");
+
+
+            debugger
+
+            //$("#UserName").delay(1000).toggle(2000);
+            //$("html").scrollTop(0);
+
+            /*var username = $("#UserName").val(); // GET*/
+
+        })
+
+        $("#UserName").change(function () {
+            debugger
+            //$(this).attr("data-value", "Jigar Thakkar");
+
+            //alert($("#btnButton").hasClass("clsClass dsfsdff dff"));
+
+            //debugger
+
+            //$("#UserName").delay(1000).toggle(2000);
+            //$("html").scrollTop(0);
+
+            /*var username = $("#UserName").val(); // GET*/
+
+        })
+
+
+
+
+        // Jquery
+    })
+
+    //$(document).ready(function () {
+    //    $("#myButton").click(function () {
+    //        $.getScript("/UserNew/MyMESSSGAE")
+    //    })
+
+    //})
+
+
+    //function GetClientReport() {
+    //    window.open('/UserNew/GetReport', "_blank");
+    //};
+</script>

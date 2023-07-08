@@ -13,12 +13,13 @@ namespace MyFirstMVCAppSCAGT.Controllers
         {
             // cs + html
             // HTML
+            return PartialView("https://www.showit.tech/");
 
-            User user = new User();
-            user.UserId = 10;
-            user.UserName = "Jigar";
+            //User user = new User();
+            //user.UserId = 10;
+            //user.UserName = "Jigar";
 
-            return View(user);
+            //return View(user);
         }
 
         public ActionResult About()

@@ -26,6 +26,10 @@ namespace MyFirstMVCAppSCAGT.Controllers
 
             TempData.Keep("EmailId");
 
+            Session.Abandon();
+            Session.Clear();
+
+            Session["USerId"] = "10";
 
             //if (TempData.Keys["EmailId"])
             //{
@@ -55,6 +59,7 @@ namespace MyFirstMVCAppSCAGT.Controllers
         // GET: User/Create
         public ActionResult Create()
         {
+            Session["USerId"] = "10";
 
             UserDemo users = new UserDemo();
             users.UserId = 1;
@@ -155,6 +160,16 @@ namespace MyFirstMVCAppSCAGT.Controllers
             {
                 return View();
             }
+        }
+
+
+        public ActionResult PartialViewRender() 
+        {
+
+            Student student = new Student();
+            student.Address = "JKigar Thafdfjds";
+
+            return PartialView("_PartialVIew", student);
         }
     }
 }

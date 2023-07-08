@@ -4,17 +4,25 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 //using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
 
 namespace MyFirstMVCAppSCAGT.Models
 {
+
+
     public class UserDemo
     {
+
+
         /// <summary>
         /// Primary Key
         /// </summary>
+
+        //public int Id { get; set; } // Value type
+
 
         public int UserId { get; set; }
 
@@ -25,7 +33,7 @@ namespace MyFirstMVCAppSCAGT.Models
         [Required(ErrorMessage = "UserName is required!!! ")]
         [StringLength(10, MinimumLength = 4, ErrorMessage = "Maximun character is 10")]
         public string UserName { get; set; }
-            
+
         [DisplayName("Password")]
         [Required(ErrorMessage = "Password is required!!! ")]
         public string Password { get; set; }
@@ -51,9 +59,27 @@ namespace MyFirstMVCAppSCAGT.Models
 
         public List<SelectListItem> UserList { get; set; }
 
+        [Required(ErrorMessage = "Please select file.")]
+        [RegularExpression(@"([a-zA-Z0-9\s_\\.\-:])+(.png|.jpg|.gif)$", ErrorMessage = "Only Image files allowed.")]
+        public HttpPostedFileBase PostedFile { get; set; }
+
     }
 
 
+}
+
+public static class getEnum
+{
+    public static string DescriptionAttr<T>(this T source)
+    {
+        FieldInfo fi = source.GetType().GetField(source.ToString());
+
+        DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(
+            typeof(DescriptionAttribute), false);
+
+        if (attributes != null && attributes.Length > 0) return attributes[0].Description;
+        else return source.ToString();
+    }
 }
 
 public enum Country
@@ -63,3 +89,21 @@ public enum Country
     Canada = 3
 
 }
+public enum GENDER
+{
+    [Description("This is male")]
+    Male = 10,
+
+    [Description("This is Female")]
+    Female = 15,
+
+
+    [Description("This is Trans")]
+    T = 20,
+
+
+    [Description("This is Les")]
+    L = 30
+
+}
+

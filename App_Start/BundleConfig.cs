@@ -26,7 +26,7 @@ namespace MyFirstMVCAppSCAGT
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-
+            //BundleTable.EnableOptimizations = true;
 
         }
     }
