@@ -26,7 +26,7 @@ namespace MyFirstMVCAppSCAGT
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "User", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "EntityFrameworkDemo", action = "Index", id = UrlParameter.Optional }
             );
 
             //MVC :: localHost/ControllerName/ActionName?id=20&firstname=jigar

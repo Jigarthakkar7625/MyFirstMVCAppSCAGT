@@ -135,6 +135,7 @@
       <DependentUpon>MyDBConnection.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\EmployeeController.cs" />
+    <Compile Include="Controllers\EntityFrameworkDemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserNewController.cs" />
@@ -284,6 +285,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Download\" />
     <Folder Include="Views\Employee\" />
+    <Folder Include="Views\EntityFrameworkDemo\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
