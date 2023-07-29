@@ -12,7 +12,7 @@ namespace MyFirstMVCAppSCAGT
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class MyFilterView_Demo
     {
         public int UserId { get; set; }
         public string UserName { get; set; }
@@ -20,6 +20,8 @@ namespace MyFirstMVCAppSCAGT
         public int Salary { get; set; }
         public string Department { get; set; }
         public int ParentUserID { get; set; }
-        public Nullable<Gender> Gender { get; set; }
+        public int User_Address_ID { get; set; }
+        public string Address { get; set; }
+        public Nullable<int> Expr1 { get; set; }
     }
 }

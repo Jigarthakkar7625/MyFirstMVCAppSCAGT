@@ -94,7 +94,7 @@ namespace MyFirstMVCAppSCAGT.Controllers
         [HttpPost]
         public ActionResult JsonResultMethod(UserDemo user)
         {
-            MyDBJMAAEntities MyDBJMAAEntities = new MyDBJMAAEntities();
+            MyDBJMAAEntities1 MyDBJMAAEntities = new MyDBJMAAEntities1();
 
             var getStudents = MyDBJMAAEntities.Users.ToList();
 

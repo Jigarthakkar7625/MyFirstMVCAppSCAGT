@@ -1,4 +1,5 @@
-﻿using MyFirstMVCAppSCAGT.Models;
+﻿using MyFirstMVCAppSCAGT.Auth;
+using MyFirstMVCAppSCAGT.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -11,13 +12,16 @@ using System.Web;
 using System.Web.Mvc;
 using static System.Net.Mime.MediaTypeNames;
 
+
+
 namespace MyFirstMVCAppSCAGT.Controllers
 {
-    public class UserController : Controller
+    
+    public class User123Controller : Controller
     {
         // GET: User
 
-        MyDBJMAAEntities MyDBJMAAEntities = new MyDBJMAAEntities();
+        MyDBJMAAEntities1 MyDBJMAAEntities = new MyDBJMAAEntities1();
 
         public ActionResult Index()
         {
@@ -325,6 +329,9 @@ namespace MyFirstMVCAppSCAGT.Controllers
         // GET: User/Create
         public ActionResult Create()
         {
+
+            throw new Exception("My custom error");
+
             Session["USerId"] = "10";
 
             UserDemo users = new UserDemo();
@@ -407,6 +414,7 @@ namespace MyFirstMVCAppSCAGT.Controllers
         }
 
         // GET: User/Delete/5
+        
         public ActionResult Delete(int id)
         {
             return View();

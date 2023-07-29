@@ -15,6 +15,26 @@ namespace MyFirstMVCAppSCAGT.Controllers
     {
 
 
+        // ASP.NET MVC Filter >> 
+
+        // 1. Authenticaiton Filters >> Credential is valid or not >>
+        // 2. Authorization Filters >> Roles (Permissions) >>
+        // 3. Action Filters >> Contoller level or Action level
+        // 4. Error Filters >> 
+        // 5. Result Filters >> 
+
+        // Authorize()
+        // OutputCache()
+        // handleError()
+
+
+
+
+
+
+
+
+
 
         // Multiple inharitacne
         // Security

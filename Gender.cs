@@ -10,16 +10,11 @@
 namespace MyFirstMVCAppSCAGT
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class User
+    public enum Gender : int
     {
-        public int UserId { get; set; }
-        public string UserName { get; set; }
-        public bool IsActive { get; set; }
-        public int Salary { get; set; }
-        public string Department { get; set; }
-        public int ParentUserID { get; set; }
-        public Nullable<Gender> Gender { get; set; }
+        Male = 1,
+        Female = 2,
+        Trans = 3
     }
 }

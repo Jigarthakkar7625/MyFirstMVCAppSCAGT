@@ -42,12 +42,6 @@ warning 6002: The table/view 'MyDBJMAA.dbo.AuditLog' does not have a primary key
           <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DepartmentName" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'MyDBJMAA.dbo.EMp' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="EMp">
-          <Property Name="EMPID" Type="int" />
-          <Property Name="EMPName" Type="varchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="EmpJimmy">
           <Key>
             <PropertyRef Name="EmpID" />
@@ -77,12 +71,6 @@ warning 6013: The table/view 'MyDBJMAA.dbo.EMp' does not have a primary key defi
           <Property Name="Department" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Age" Type="int" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6013: The table/view 'MyDBJMAA.dbo.History' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="History">
-          <Property Name="History_Id" Type="int" />
-          <Property Name="History_name" Type="varchar" MaxLength="50" />
-        </EntityType>-->
         <EntityType Name="Menu">
           <Key>
             <PropertyRef Name="MenuID" />
@@ -125,6 +113,7 @@ warning 6002: The table/view 'MyDBJMAA.dbo.User' does not have a primary key def
           <Property Name="Salary" Type="int" Nullable="false" />
           <Property Name="Department" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ParentUserID" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="int" />
         </EntityType>
         <EntityType Name="User_Address">
           <Key>
@@ -152,11 +141,49 @@ warning 6002: The table/view 'MyDBJMAA.dbo.UserJMMY' does not have a primary key
           <Property Name="IsActive" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6013: The table/view 'MyDBJMAA.dbo.UserJMMY123' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
-        <EntityType Name="UserJMMY123">
-          <Property Name="UserID" Type="int" />
-          <Property Name="UserName" Type="varchar" MaxLength="50" />
-        </EntityType>-->
+warning 6002: The table/view 'MyDBJMAA.dbo.MyFilterView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MyFilterView">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="Salary" />
+            <PropertyRef Name="Department" />
+            <PropertyRef Name="ParentUserID" />
+            <PropertyRef Name="User_Address_ID" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Salary" Type="int" Nullable="false" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentUserID" Type="int" Nullable="false" />
+          <Property Name="User_Address_ID" Type="int" Nullable="false" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="Expr1" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'MyDBJMAA.dbo.MyFilterView_Demo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="MyFilterView_Demo">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="Salary" />
+            <PropertyRef Name="Department" />
+            <PropertyRef Name="ParentUserID" />
+            <PropertyRef Name="User_Address_ID" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Salary" Type="int" Nullable="false" />
+          <Property Name="Department" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ParentUserID" Type="int" Nullable="false" />
+          <Property Name="User_Address_ID" Type="int" Nullable="false" />
+          <Property Name="Address" Type="varchar(max)" />
+          <Property Name="Expr1" Type="int" />
+        </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'MyDBJMAA.dbo.MyFirstView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="MyFirstView">
@@ -261,6 +288,19 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
         <Function Name="MyFirstSP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="int" Mode="In" />
         </Function>
+        <Function Name="MyFunction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="UserId" Type="int" Nullable="false" />
+                <Property Name="UserName" Type="varchar" MaxLength="50" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="MyFunction123" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="param" Type="int" Mode="In" />
+        </Function>
         <Function Name="MyTableValuedFunction" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="a" Type="int" Mode="In" />
           <ReturnType>
@@ -289,6 +329,14 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
           <Parameter Name="studentName" Type="varchar" Mode="In" />
           <Parameter Name="courseId" Type="int" Mode="In" />
           <Parameter Name="address" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Insert_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="UserName" Type="varchar" Mode="In" />
+          <Parameter Name="IsActive" Type="bit" Mode="In" />
+          <Parameter Name="Salary" Type="int" Mode="In" />
+          <Parameter Name="Department" Type="varchar" Mode="In" />
+          <Parameter Name="Name" Type="varchar" Mode="In" />
         </Function>
         <Function Name="SP_SaveEmployee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="UserId" Type="int" Mode="In" />
@@ -323,7 +371,8 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
     [User].[IsActive] AS [IsActive], 
     [User].[Salary] AS [Salary], 
     [User].[Department] AS [Department], 
-    [User].[ParentUserID] AS [ParentUserID]
+    [User].[ParentUserID] AS [ParentUserID], 
+    [User].[Gender] AS [Gender]
     FROM [dbo].[User] AS [User]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="UserJMMY" EntityType="Self.UserJMMY" store:Type="Tables" store:Schema="dbo">
@@ -332,6 +381,32 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
     [UserJMMY].[UserName] AS [UserName], 
     [UserJMMY].[IsActive] AS [IsActive]
     FROM [dbo].[UserJMMY] AS [UserJMMY]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MyFilterView" EntityType="Self.MyFilterView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MyFilterView].[UserId] AS [UserId], 
+    [MyFilterView].[UserName] AS [UserName], 
+    [MyFilterView].[IsActive] AS [IsActive], 
+    [MyFilterView].[Salary] AS [Salary], 
+    [MyFilterView].[Department] AS [Department], 
+    [MyFilterView].[ParentUserID] AS [ParentUserID], 
+    [MyFilterView].[User_Address_ID] AS [User_Address_ID], 
+    [MyFilterView].[Address] AS [Address], 
+    [MyFilterView].[Expr1] AS [Expr1]
+    FROM [dbo].[MyFilterView] AS [MyFilterView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="MyFilterView_Demo" EntityType="Self.MyFilterView_Demo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [MyFilterView_Demo].[UserId] AS [UserId], 
+    [MyFilterView_Demo].[UserName] AS [UserName], 
+    [MyFilterView_Demo].[IsActive] AS [IsActive], 
+    [MyFilterView_Demo].[Salary] AS [Salary], 
+    [MyFilterView_Demo].[Department] AS [Department], 
+    [MyFilterView_Demo].[ParentUserID] AS [ParentUserID], 
+    [MyFilterView_Demo].[User_Address_ID] AS [User_Address_ID], 
+    [MyFilterView_Demo].[Address] AS [Address], 
+    [MyFilterView_Demo].[Expr1] AS [Expr1]
+    FROM [dbo].[MyFilterView_Demo] AS [MyFilterView_Demo]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="MyFirstView" EntityType="Self.MyFirstView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -383,6 +458,10 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
           <Property Name="UserName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Name="UserId" Type="Int32" />
           <Property Name="AvinasColumn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </ComplexType>
+        <ComplexType Name="MyFunction_Result">
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </ComplexType>
         <ComplexType Name="MyTableValuedFunction_Result">
           <Property Name="UserId" Type="Int32" Nullable="false" />
@@ -471,8 +550,8 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
           <Property Name="StudentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CourseId" Type="Int32" />
           <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Course" Relationship="Self.FK_Student_Course" FromRole="Student" ToRole="Course" />
           <Property Name="Address2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Course" Relationship="Self.FK_Student_Course" FromRole="Student" ToRole="Course" />
         </EntityType>
         <EntityType Name="Student_New">
           <Key>
@@ -520,6 +599,7 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
           <Property Name="Salary" Type="Int32" Nullable="false" />
           <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ParentUserID" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="MyDBJMAAModel.Gender" />
         </EntityType>
         <EntityType Name="UserJMMY">
           <Key>
@@ -528,6 +608,46 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
           <Property Name="UserID" Type="Byte" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MyFilterView">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="Salary" />
+            <PropertyRef Name="Department" />
+            <PropertyRef Name="ParentUserID" />
+            <PropertyRef Name="User_Address_ID" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Salary" Type="Int32" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentUserID" Type="Int32" Nullable="false" />
+          <Property Name="User_Address_ID" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Expr1" Type="Int32" />
+        </EntityType>
+        <EntityType Name="MyFilterView_Demo">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="UserName" />
+            <PropertyRef Name="IsActive" />
+            <PropertyRef Name="Salary" />
+            <PropertyRef Name="Department" />
+            <PropertyRef Name="ParentUserID" />
+            <PropertyRef Name="User_Address_ID" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Salary" Type="Int32" Nullable="false" />
+          <Property Name="Department" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParentUserID" Type="Int32" Nullable="false" />
+          <Property Name="User_Address_ID" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Expr1" Type="Int32" />
         </EntityType>
         <EntityType Name="MyFirstView">
           <Key>
@@ -595,7 +715,7 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="MyDBJMAAEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="MyDBJMAAEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="AUDITTABLEs" EntityType="Self.AUDITTABLE" />
           <EntitySet Name="Courses" EntityType="Self.Course" />
           <EntitySet Name="DepartmentIDs" EntityType="Self.DepartmentID" />
@@ -610,6 +730,8 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
           <EntitySet Name="AuditLogs" EntityType="Self.AuditLog" />
           <EntitySet Name="Users" EntityType="Self.User" />
           <EntitySet Name="UserJMMies" EntityType="Self.UserJMMY" />
+          <EntitySet Name="MyFilterViews" EntityType="Self.MyFilterView" />
+          <EntitySet Name="MyFilterView_Demo" EntityType="Self.MyFilterView_Demo" />
           <EntitySet Name="MyFirstViews" EntityType="Self.MyFirstView" />
           <EntitySet Name="View_20230603" EntityType="Self.View_20230603" />
           <AssociationSet Name="FK_Course_Employee" Association="Self.FK_Course_Employee">
@@ -626,6 +748,7 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
           </AssociationSet>
           <FunctionImport Name="GETTABLES" IsComposable="true" ReturnType="Collection(MyDBJMAAModel.GETTABLES_Result)" />
           <FunctionImport Name="GETTABLES_Multi" IsComposable="true" ReturnType="Collection(MyDBJMAAModel.GETTABLES_Multi_Result)" />
+          <FunctionImport Name="MyFunction" IsComposable="true" ReturnType="Collection(MyDBJMAAModel.MyFunction_Result)" />
           <FunctionImport Name="MyTableValuedFunction" IsComposable="true" ReturnType="Collection(MyDBJMAAModel.MyTableValuedFunction_Result)">
           <Parameter Name="a" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -640,6 +763,14 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
             <Parameter Name="studentName" Mode="In" Type="String" />
             <Parameter Name="courseId" Mode="In" Type="Int32" />
             <Parameter Name="address" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Insert_User">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="UserName" Mode="In" Type="String" />
+            <Parameter Name="IsActive" Mode="In" Type="Boolean" />
+            <Parameter Name="Salary" Mode="In" Type="Int32" />
+            <Parameter Name="Department" Mode="In" Type="String" />
+            <Parameter Name="Name" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="SP_SaveEmployee" ReturnType="Collection(MyDBJMAAModel.SP_SaveEmployee_Result)">
             <Parameter Name="UserId" Mode="In" Type="Int32" />
@@ -664,12 +795,17 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
           <Property Type="Int32" Name="UserId" Nullable="false" />
           <Property Type="String" Name="UserName" Nullable="true" MaxLength="50" />
         </ComplexType>
+        <EnumType Name="Gender">
+          <Member Name="Male" Value="1" />
+          <Member Name="Female" Value="2" />
+          <Member Name="Trans" Value="3" />
+        </EnumType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="MyDBJMAAModelStoreContainer" CdmEntityContainer="MyDBJMAAEntities">
+        <EntityContainerMapping StorageEntityContainer="MyDBJMAAModelStoreContainer" CdmEntityContainer="MyDBJMAAEntities1">
           <EntitySetMapping Name="AUDITTABLEs">
             <EntityTypeMapping TypeName="MyDBJMAAModel.AUDITTABLE">
               <MappingFragment StoreEntitySet="AUDITTABLE">
@@ -743,11 +879,11 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
           <EntitySetMapping Name="Students">
             <EntityTypeMapping TypeName="MyDBJMAAModel.Student">
               <MappingFragment StoreEntitySet="Student">
-                <ScalarProperty Name="Address2" ColumnName="Address2" />
                 <ScalarProperty Name="StudentId" ColumnName="StudentId" />
                 <ScalarProperty Name="StudentName" ColumnName="StudentName" />
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -788,6 +924,7 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="MyDBJMAAModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
@@ -803,6 +940,36 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyFilterViews">
+            <EntityTypeMapping TypeName="MyDBJMAAModel.MyFilterView">
+              <MappingFragment StoreEntitySet="MyFilterView">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="ParentUserID" ColumnName="ParentUserID" />
+                <ScalarProperty Name="User_Address_ID" ColumnName="User_Address_ID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MyFilterView_Demo">
+            <EntityTypeMapping TypeName="MyDBJMAAModel.MyFilterView_Demo">
+              <MappingFragment StoreEntitySet="MyFilterView_Demo">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="ParentUserID" ColumnName="ParentUserID" />
+                <ScalarProperty Name="User_Address_ID" ColumnName="User_Address_ID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -852,6 +1019,14 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionName="MyDBJMAAModel.Store.MyFunction" FunctionImportName="MyFunction">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MyDBJMAAModel.MyFunction_Result">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionName="MyDBJMAAModel.Store.MyTableValuedFunction" FunctionImportName="MyTableValuedFunction">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MyDBJMAAModel.MyTableValuedFunction_Result">
@@ -891,6 +1066,7 @@ warning 6002: The table/view 'MyDBJMAA.dbo.View_20230603' does not have a primar
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="SP_GetData" FunctionName="MyDBJMAAModel.Store.SP_GetData" />
+          <FunctionImportMapping FunctionImportName="SP_Insert_User" FunctionName="MyDBJMAAModel.Store.SP_Insert_User" />
           <FunctionImportMapping FunctionImportName="SP_SaveEmployee" FunctionName="MyDBJMAAModel.Store.SP_SaveEmployee">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MyDBJMAAModel.SP_SaveEmployee_Result">

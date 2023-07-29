@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using MyFirstMVCAppSCAGT.Auth;
+using System.Web;
 using System.Web.Mvc;
 
 namespace MyFirstMVCAppSCAGT
@@ -7,7 +8,7 @@ namespace MyFirstMVCAppSCAGT
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            filters.Add(new CusomErrorAttribute());
         }
     }
 }

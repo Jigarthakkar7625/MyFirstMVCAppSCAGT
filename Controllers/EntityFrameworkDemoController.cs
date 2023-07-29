@@ -1,5 +1,7 @@
-﻿using System;
+﻿using MyFirstMVCAppSCAGT.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,117 +11,178 @@ namespace MyFirstMVCAppSCAGT.Controllers
     public class EntityFrameworkDemoController : Controller
     {
 
+        public static string Loggin(string MESSAGE)
+        {
+
+            return "My Message";
+        }
+
+
         // GET: EntityFrameworkDemo
         public ActionResult Index()
         {
-            //MyDBJMAAEntities MyDBJMAAEntities = new MyDBJMAAEntities();
+            //Subteam team = new Subteam("Old Team", 12);
 
-            //return RedirectToAction("Index");
+            //team.AddPlayer(2);
 
-            //Pagination
-            // Pagination : Jquery Datatable
+            //var resultBool = team.RemovePlayer(1);
 
-            using (var MyDBJMAAEntitiesobj = new MyDBJMAAEntities()) // Using
-            {
-                // We are not getting EmpJimmies records
-
-                var abc = MyDBJMAAEntitiesobj.DepartmentIDs.Find(1);
-
-                MyDBJMAAEntitiesobj.DepartmentIDs.Remove(abc);
+            //team.ChangeTeamName("New Team");
 
 
-                // User_Address user = new User_Address();
-                //user.Address = "Address new Nw New";
-                //user.UserId = 11;
-                //MyDBJMAAEntitiesobj.User_Address.Add(user);
-
-                //MyDBJMAAEntitiesobj.SaveChanges();
-
-                var abcd = MyDBJMAAEntitiesobj.ChangeTracker;
-
-                foreach (var item in abcd.Entries())
-                {
-                    var Name= item.Entity.GetType().Name;
-                    var FullName = item.Entity.GetType().FullName; // Table
-                    var State = item.State;
-                }
+            //Console.WriteLine(team.teamName);
+            //Console.WriteLine(team.noOfPlayers);
 
 
+            ////MyDBJMAAEntities MyDBJMAAEntities = new MyDBJMAAEntities();
 
-                //MyDBJMAAEntitiesobj.SaveChanges();
+            ////return RedirectToAction("Index");
 
-                //var abc = MyDBJMAAEntitiesobj.Database.ExecuteSqlCommand("insert into [User] values (12,'Thakkar123',1,50,'IT',4)"); // Inline query 
+            ////Pagination
+            //// Pagination : Jquery Datatable
 
+            //using (var MyDBJMAAEntitiesobj = new MyDBJMAAEntities1()) // Using
+            //{
+            //    // We are not getting EmpJimmies records
 
-                //var getUser123 = MyDBJMAAEntitiesobj.DepartmentIDs.ToList();
+            //    using (DbContextTransaction trans = MyDBJMAAEntitiesobj.Database.BeginTransaction())
+            //    {
+            //        try
+            //        {
 
-                //var DepartmentIDObj = getUser123[0];
+            //            //MyDBJMAAEntitiesobj.Database.Log = con
 
-                // Lazy loading
-                //var empJimmy = DepartmentIDObj.EmpJimmies;
+            //            Student student1234 = new Student();
+            //            student1234.StudentName = "First Insert";
+            //            student1234.CourseId = 6;
+            //            MyDBJMAAEntitiesobj.Students.Add(student1234);
 
-
-                var getUser = MyDBJMAAEntitiesobj.Users.ToList();
-
-                //Create
-
-
-                //User_Address user = new User_Address();
-                //user.Address = "Address new Nw New";
-                //user.UserId = 11;
-                //MyDBJMAAEntitiesobj.User_Address.Add(user);
-
-               
-
-                //MyDBJMAAEntitiesobj.SaveChanges();
-
-                Student student = new Student();
-                student.StudentName = "Hello Brother";
-                student.CourseId = 6;
-                MyDBJMAAEntitiesobj.Students.Add(student);
-
-
-                MyDBJMAAEntitiesobj.SaveChanges();
-
-                //Console.WriteLine(user.User_Address_ID);
-
-                //Update
-
-                //var getReord = MyDBJMAAEntitiesobj.User_Address.Where(x => x.User_Address_ID == 2002).FirstOrDefault();
-                //MyDBJMAAEntitiesobj.User_Address.Remove(getReord);
+            //            MyDBJMAAEntitiesobj.SaveChanges();
 
 
 
-                MyDBJMAAEntitiesobj.SaveChanges();
-
-            }
-
-            // CRUD : Create, Read, Update, Delete
-
-            // Read
+            //            Student student123 = new Student();
+            //            student123.StudentName = "Second Insert";
+            //            student123.CourseId = 6;
+            //            MyDBJMAAEntitiesobj.Students.Add(student123);
 
 
+            //            int b = 10;
+            //            int a = b / 0;
+
+            //            MyDBJMAAEntitiesobj.SaveChanges();
+
+            //            trans.Commit();
+
+            //        }
+
+            //        catch (Exception ex)
+            //        {
+            //            trans.Rollback();
 
 
-            //EF
-            // ASP.NET frmework : 4.8 >>> Database first approach >> EDMX
-
-            // ASP.NET core frmework : 4.8 >>> Database first approach.
-            // EFCore : 
-
-            // Entity Framework : 
-            // ORM >> Object relational Mapping >> 
-            // SQL : 
-
-            // VVVVVMMMMM : 
-            // 1. Database first approach
-            // We have alrady Database : and then create models based on Database. 
+            //        }
+            //    }
 
 
 
+            //    var abc = MyDBJMAAEntitiesobj.DepartmentIDs.Find(1);
+
+            //    MyDBJMAAEntitiesobj.DepartmentIDs.Remove(abc);
 
 
-            // 2. Code first approach
+            //    // User_Address user = new User_Address();
+            //    //user.Address = "Address new Nw New";
+            //    //user.UserId = 11;
+            //    //MyDBJMAAEntitiesobj.User_Address.Add(user);
+
+            //    //MyDBJMAAEntitiesobj.SaveChanges();
+
+            //    var abcd = MyDBJMAAEntitiesobj.ChangeTracker;
+
+            //    foreach (var item in abcd.Entries())
+            //    {
+            //        var Name = item.Entity.GetType().Name;
+            //        var FullName = item.Entity.GetType().FullName; // Table
+            //        var State = item.State;
+            //    }
+
+
+
+            //    //MyDBJMAAEntitiesobj.SaveChanges();
+
+            //    //var abc = MyDBJMAAEntitiesobj.Database.ExecuteSqlCommand("insert into [User] values (12,'Thakkar123',1,50,'IT',4)"); // Inline query 
+
+
+            //    //var getUser123 = MyDBJMAAEntitiesobj.DepartmentIDs.ToList();
+
+            //    //var DepartmentIDObj = getUser123[0];
+
+            //    // Lazy loading
+            //    //var empJimmy = DepartmentIDObj.EmpJimmies;
+
+
+            //    var getUser = MyDBJMAAEntitiesobj.Users.ToList();
+
+            //    //Create
+
+
+            //    //User_Address user = new User_Address();
+            //    //user.Address = "Address new Nw New";
+            //    //user.UserId = 11;
+            //    //MyDBJMAAEntitiesobj.User_Address.Add(user);
+
+
+
+            //    //MyDBJMAAEntitiesobj.SaveChanges();
+
+            //    Student student = new Student();
+            //    student.StudentName = "Hello Brother";
+            //    student.CourseId = 6;
+            //    MyDBJMAAEntitiesobj.Students.Add(student);
+
+
+            //    MyDBJMAAEntitiesobj.SaveChanges();
+
+            //    //Console.WriteLine(user.User_Address_ID);
+
+            //    //Update
+
+            //    //var getReord = MyDBJMAAEntitiesobj.User_Address.Where(x => x.User_Address_ID == 2002).FirstOrDefault();
+            //    //MyDBJMAAEntitiesobj.User_Address.Remove(getReord);
+
+
+
+            //    MyDBJMAAEntitiesobj.SaveChanges();
+
+            //}
+
+            //// CRUD : Create, Read, Update, Delete
+
+            //// Read
+
+
+
+
+            ////EF
+            //// ASP.NET frmework : 4.8 >>> Database first approach >> EDMX
+
+            //// ASP.NET core frmework : 4.8 >>> Database first approach.
+            //// EFCore : 
+
+            //// Entity Framework : 
+            //// ORM >> Object relational Mapping >> 
+            //// SQL : 
+
+            //// VVVVVMMMMM : 
+            //// 1. Database first approach
+            //// We have alrady Database : and then create models based on Database. 
+
+
+
+
+
+            //// 2. Code first approach
 
 
 

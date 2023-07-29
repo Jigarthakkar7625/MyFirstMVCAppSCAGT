@@ -15,10 +15,10 @@ namespace MyFirstMVCAppSCAGT
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class MyDBJMAAEntities : DbContext
+    public partial class MyDBJMAAEntities1 : DbContext
     {
-        public MyDBJMAAEntities()
-            : base("name=MyDBJMAAEntities")
+        public MyDBJMAAEntities1()
+            : base("name=MyDBJMAAEntities1")
         {
         }
     
@@ -41,35 +41,43 @@ namespace MyFirstMVCAppSCAGT
         public virtual DbSet<AuditLog> AuditLogs { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<UserJMMY> UserJMMies { get; set; }
+        public virtual DbSet<MyFilterView> MyFilterViews { get; set; }
+        public virtual DbSet<MyFilterView_Demo> MyFilterView_Demo { get; set; }
         public virtual DbSet<MyFirstView> MyFirstViews { get; set; }
         public virtual DbSet<View_20230603> View_20230603 { get; set; }
     
-        [DbFunction("MyDBJMAAEntities", "GETTABLES")]
+        [DbFunction("MyDBJMAAEntities1", "GETTABLES")]
         public virtual IQueryable<GETTABLES_Result> GETTABLES()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GETTABLES_Result>("[MyDBJMAAEntities].[GETTABLES]()");
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GETTABLES_Result>("[MyDBJMAAEntities1].[GETTABLES]()");
         }
     
-        [DbFunction("MyDBJMAAEntities", "GETTABLES_Multi")]
+        [DbFunction("MyDBJMAAEntities1", "GETTABLES_Multi")]
         public virtual IQueryable<GETTABLES_Multi_Result> GETTABLES_Multi()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GETTABLES_Multi_Result>("[MyDBJMAAEntities].[GETTABLES_Multi]()");
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GETTABLES_Multi_Result>("[MyDBJMAAEntities1].[GETTABLES_Multi]()");
         }
     
-        [DbFunction("MyDBJMAAEntities", "MyTableValuedFunction")]
+        [DbFunction("MyDBJMAAEntities1", "MyFunction")]
+        public virtual IQueryable<MyFunction_Result> MyFunction()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<MyFunction_Result>("[MyDBJMAAEntities1].[MyFunction]()");
+        }
+    
+        [DbFunction("MyDBJMAAEntities1", "MyTableValuedFunction")]
         public virtual IQueryable<MyTableValuedFunction_Result> MyTableValuedFunction(Nullable<int> a)
         {
             var aParameter = a.HasValue ?
                 new ObjectParameter("a", a) :
                 new ObjectParameter("a", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<MyTableValuedFunction_Result>("[MyDBJMAAEntities].[MyTableValuedFunction](@a)", aParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<MyTableValuedFunction_Result>("[MyDBJMAAEntities1].[MyTableValuedFunction](@a)", aParameter);
         }
     
-        [DbFunction("MyDBJMAAEntities", "MyTableValuedFunction1")]
+        [DbFunction("MyDBJMAAEntities1", "MyTableValuedFunction1")]
         public virtual IQueryable<MyTableValuedFunction1_Result> MyTableValuedFunction1()
         {
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<MyTableValuedFunction1_Result>("[MyDBJMAAEntities].[MyTableValuedFunction1]()");
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<MyTableValuedFunction1_Result>("[MyDBJMAAEntities1].[MyTableValuedFunction1]()");
         }
     
         public virtual ObjectResult<GetMultipleData_Result> GetMultipleData(Nullable<int> studentId)
@@ -105,6 +113,35 @@ namespace MyFirstMVCAppSCAGT
                 new ObjectParameter("address", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_GetData", studentNameParameter, courseIdParameter, addressParameter);
+        }
+    
+        public virtual int SP_Insert_User(Nullable<int> userId, string userName, Nullable<bool> isActive, Nullable<int> salary, string department, string name)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            var userNameParameter = userName != null ?
+                new ObjectParameter("UserName", userName) :
+                new ObjectParameter("UserName", typeof(string));
+    
+            var isActiveParameter = isActive.HasValue ?
+                new ObjectParameter("IsActive", isActive) :
+                new ObjectParameter("IsActive", typeof(bool));
+    
+            var salaryParameter = salary.HasValue ?
+                new ObjectParameter("Salary", salary) :
+                new ObjectParameter("Salary", typeof(int));
+    
+            var departmentParameter = department != null ?
+                new ObjectParameter("Department", department) :
+                new ObjectParameter("Department", typeof(string));
+    
+            var nameParameter = name != null ?
+                new ObjectParameter("Name", name) :
+                new ObjectParameter("Name", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SP_Insert_User", userIdParameter, userNameParameter, isActiveParameter, salaryParameter, departmentParameter, nameParameter);
         }
     
         public virtual ObjectResult<SP_SaveEmployee_Result> SP_SaveEmployee(Nullable<int> userId, string action)
